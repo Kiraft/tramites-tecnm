@@ -1,0 +1,14 @@
+CREATE TABLE personas(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    corre VARCHAR(266) NOT NULL UNIQUE
+);
+
+CREATE TABLE taks (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    personas_id INT NOT NULL,
+    titulo VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL,
+
+    FOREIGN KEY (personas_id) REFERENCES personas(id)
+);

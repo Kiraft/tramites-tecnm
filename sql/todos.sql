@@ -1,0 +1,3 @@
+CREATE DATABASE todos;
+
+USE DATABASE todos,

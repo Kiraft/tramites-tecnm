@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerArchivo">
+   <children>
+      <Pane layoutX="208.0" layoutY="124.0" prefHeight="552.0" prefWidth="447.0" style="-fx-background-color: #1B396A;">
+         <children>
+            <Label alignment="CENTER" layoutX="36.0" layoutY="22.0" prefHeight="43.0" prefWidth="387.0" style="-fx-background-color: WHITE; -fx-background-radius: 10; -fx-border-color: black; -fx-border-width: 3; -fx-border-radius: 6;" text="SERVICIO SOCIAL ">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Label>
+            <Button layoutX="25.0" layoutY="104.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Label alignment="CENTER" layoutX="140.0" layoutY="104.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="SOLICITUD" />
+            <Button layoutX="26.0" layoutY="147.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="141.0" layoutY="147.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="CARTA COMPROMISO" />
+            <Button layoutX="26.0" layoutY="190.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="141.0" layoutY="190.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="PLAN DE TRABAJO" />
+            <Button layoutX="26.0" layoutY="232.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="141.0" layoutY="232.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="CARTA DE ASIGNACION" />
+            <Button layoutX="26.0" layoutY="273.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="141.0" layoutY="273.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="CARTA DE ACEPTACION" />
+            <Button layoutX="26.0" layoutY="317.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="141.0" layoutY="317.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="FORMATO DE EVALUACION" />
+            <Button layoutX="26.0" layoutY="360.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="141.0" layoutY="360.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="CARTA DE TERMINACION" />
+            <Button layoutX="26.0" layoutY="402.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="141.0" layoutY="402.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="REPORTE FINAL DE ACTIVIDAD" />
+            <Button layoutX="107.0" layoutY="474.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="ENVIAR" />
+            <Button layoutX="236.0" layoutY="474.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="CANCELAR" />
+         </children>
+      </Pane>
+      <Button fx:id="btnMenu" layoutX="45.0" layoutY="124.0" mnemonicParsing="false" onAction="#clickBtn" prefHeight="56.0" prefWidth="123.0" style="-fx-background-color: FFFFFF; -fx-border-color: #1B396A; -fx-border-width: 2;" text="Menu" textFill="#1b0000">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSubir" layoutX="45.0" layoutY="180.0" mnemonicParsing="false" onAction="#clickBtn" prefHeight="56.0" prefWidth="123.0" style="-fx-background-color: #1B396A; -fx-border-width: 2; -fx-border-color: black;" text="SUBIR DOCUMENTOS" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnMyDocs" layoutX="45.0" layoutY="236.0" mnemonicParsing="false" onAction="#clickBtn" prefHeight="56.0" prefWidth="123.0" style="-fx-background-color: #1B396A; -fx-border-color: black; -fx-border-width: 2;" text="MIS DOCUMENTOS" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnFinish" layoutX="45.0" layoutY="292.0" mnemonicParsing="false" onAction="#clickBtn" prefHeight="56.0" prefWidth="123.0" style="-fx-background-color: #1B396A; -fx-border-color: black; -fx-border-width: 2;" text="FINALIZAR TRAMITE" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnHelp" layoutX="45.0" layoutY="348.0" mnemonicParsing="false" onAction="#clickBtn" prefHeight="56.0" prefWidth="123.0" style="-fx-background-color: #1B396A; -fx-border-color: black; -fx-border-width: 2;" text="AYUDA" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnClose" layoutX="45.0" layoutY="404.0" mnemonicParsing="false" onAction="#clickBtn" prefHeight="56.0" prefWidth="123.0" style="-fx-background-color: #1B396A; -fx-border-color: black; -fx-border-width: 2;" text="CERRAR SESION" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+      </Button>
+      <Pane layoutX="79.0" layoutY="22.0" prefHeight="56.0" prefWidth="589.0" style="-fx-background-color: #1B396A; -fx-background-radius: 20;">
+         <children>
+            <Label layoutX="113.0" layoutY="13.0" text="TECNOLOGICO NACIONAL DE MEXICO" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fx:id="logoHome" fitHeight="82.0" fitWidth="102.0" layoutX="38.0" layoutY="9.0" onMouseClicked="#MouseClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/tecnm.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
