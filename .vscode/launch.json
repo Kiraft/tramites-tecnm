@@ -14,7 +14,7 @@
             "type": "java",
             "name": "App",
             "request": "launch",
-            "vmArgs": "--module-path C:\\Archivos\\Documentos\\javafx-sdk-17.0.6\\lib --add-modules=javafx.controls,javafx.fxml",
+            "vmArgs": "--module-path C:\\Archivos\\Documentos\\Lib-Java\\javafx-sdk-17.0.6\\lib --add-modules=javafx.controls,javafx.fxml",
             "mainClass": "App",
             "projectName": "Projecto - TramitesTECNM_37140719"
         },

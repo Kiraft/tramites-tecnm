@@ -15,10 +15,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import model.UserDAO;
 
 
 
 public class LoginController {
+
+    private UserDAO UDAO = new UserDAO();
 
     @FXML
     private Button btnLogin;
@@ -37,15 +40,21 @@ public class LoginController {
             
             if (!txtUser.getText().isEmpty() && !txtPassword.getText().isEmpty()) {
                 
-                String user = txtUser.getText();
+                int matricula = Integer.parseInt(txtUser.getText());
                 String pass = txtPassword.getText();
 
-                if (user.equals("Admin") && pass.equals("1234")) {
-                    JOptionPane.showMessageDialog(null, "Datos correctos", null, JOptionPane.WARNING_MESSAGE);
-                    loadStage("/view/viewLandingPage.fxml", event);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al iniciar sesion, datos de acceso incorrectos XD", null, JOptionPane.WARNING_MESSAGE);
-                }
+                int state = UDAO.login(matricula, pass);
+                
+                System.out.println(state);
+                
+                if (state != -1) {
+                    if (state == 1) {
+                        JOptionPane.showMessageDialog(null, "Datos correctos", null, JOptionPane.WARNING_MESSAGE);
+                        loadStage("/view/viewLandingPage.fxml", event);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Datos correctos incorrectos", null, JOptionPane.WARNING_MESSAGE);
+                    }
+                } 
 
             } else {
                 JOptionPane.showMessageDialog(null, "Esta vacio bro", null, JOptionPane.WARNING_MESSAGE);

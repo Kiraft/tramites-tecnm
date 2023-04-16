@@ -9,59 +9,83 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerArchivo">
    <children>
-      <Pane layoutX="208.0" layoutY="124.0" prefHeight="552.0" prefWidth="447.0" style="-fx-background-color: #1B396A;">
+      <Pane layoutX="208.0" layoutY="124.0" prefHeight="552.0" prefWidth="447.0" style="-fx-background-color: #1B396A; -fx-background-radius: 20px;">
          <children>
             <Label alignment="CENTER" layoutX="36.0" layoutY="22.0" prefHeight="43.0" prefWidth="387.0" style="-fx-background-color: WHITE; -fx-background-radius: 10; -fx-border-color: black; -fx-border-width: 3; -fx-border-radius: 6;" text="SERVICIO SOCIAL ">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Label>
-            <Button layoutX="25.0" layoutY="104.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+            <Button fx:id="btnSubirArchivo1" layoutX="25.0" layoutY="104.0" mnemonicParsing="false" onAction="#cargarArchivo" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Label alignment="CENTER" layoutX="140.0" layoutY="104.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="SOLICITUD" />
-            <Button layoutX="26.0" layoutY="147.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+            <Label fx:id="labelSubir1" alignment="CENTER" layoutX="140.0" layoutY="104.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: #EB4545;" text="SOLICITUD" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Button fx:id="btnSubirArchivo2" layoutX="26.0" layoutY="147.0" mnemonicParsing="false" onAction="#cargarArchivo" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" layoutX="141.0" layoutY="147.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="CARTA COMPROMISO" />
-            <Button layoutX="26.0" layoutY="190.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+            <Label fx:id="labelSubir2" alignment="CENTER" layoutX="141.0" layoutY="147.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: #EB4545;" text="CARTA COMPROMISO" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Button fx:id="btnSubirArchivo3" layoutX="26.0" layoutY="190.0" mnemonicParsing="false" onAction="#cargarArchivo" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" layoutX="141.0" layoutY="190.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="PLAN DE TRABAJO" />
-            <Button layoutX="26.0" layoutY="232.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+            <Label fx:id="labelSubir3" alignment="CENTER" layoutX="141.0" layoutY="190.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: #EB4545;" text="PLAN DE TRABAJO" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Button fx:id="btnSubirArchivo4" layoutX="26.0" layoutY="232.0" mnemonicParsing="false" onAction="#cargarArchivo" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" layoutX="141.0" layoutY="232.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="CARTA DE ASIGNACION" />
-            <Button layoutX="26.0" layoutY="273.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+            <Label fx:id="labelSubir4" alignment="CENTER" layoutX="141.0" layoutY="232.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: #EB4545;" text="CARTA DE ASIGNACION" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Button fx:id="btnSubirArchivo5" layoutX="26.0" layoutY="273.0" mnemonicParsing="false" onAction="#cargarArchivo" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" layoutX="141.0" layoutY="273.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="CARTA DE ACEPTACION" />
-            <Button layoutX="26.0" layoutY="317.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+            <Label fx:id="labelSubir5" alignment="CENTER" layoutX="141.0" layoutY="273.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: #EB4545;" text="CARTA DE ACEPTACION" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Button fx:id="btnSubirArchivo6" layoutX="26.0" layoutY="317.0" mnemonicParsing="false" onAction="#cargarArchivo" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" layoutX="141.0" layoutY="317.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="FORMATO DE EVALUACION" />
-            <Button layoutX="26.0" layoutY="360.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+            <Label fx:id="labelSubir6" alignment="CENTER" layoutX="141.0" layoutY="317.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: #EB4545;" text="FORMATO DE EVALUACION" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Button fx:id="btnSubirArchivo7" layoutX="26.0" layoutY="360.0" mnemonicParsing="false" onAction="#cargarArchivo" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" layoutX="141.0" layoutY="360.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="CARTA DE TERMINACION" />
-            <Button layoutX="26.0" layoutY="402.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
+            <Label fx:id="labelSubir7" alignment="CENTER" layoutX="141.0" layoutY="360.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: #EB4545;" text="CARTA DE TERMINACION" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Button fx:id="btnSubirArchivo8" layoutX="26.0" layoutY="402.0" mnemonicParsing="false" onAction="#cargarArchivo" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="SUBIR">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" layoutX="141.0" layoutY="402.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: WHITE;" text="REPORTE FINAL DE ACTIVIDAD" />
+            <Label fx:id="labelSubir8" alignment="CENTER" layoutX="141.0" layoutY="402.0" prefHeight="27.0" prefWidth="283.0" style="-fx-background-color: #EB4545;" text="REPORTE FINAL DE ACTIVIDAD" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
             <Button layoutX="107.0" layoutY="474.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="ENVIAR" />
             <Button layoutX="236.0" layoutY="474.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="CANCELAR" />
          </children>

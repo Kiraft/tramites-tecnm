@@ -21,6 +21,27 @@
 		"c:\\Archivos\\Documentos\\javafx-sdk-17.0.6\\lib\\javafx.media.jar",
 		"c:\\Archivos\\Documentos\\javafx-sdk-17.0.6\\lib\\javafx.swing.jar",
 		"c:\\Archivos\\Documentos\\javafx-sdk-17.0.6\\lib\\javafx.web.jar",
-		"c:\\Archivos\\Documentos\\javafx-sdk-17.0.6\\lib\\javafx-swt.jar"
+		"c:\\Archivos\\Documentos\\javafx-sdk-17.0.6\\lib\\javafx-swt.jar",
+		"c:\\Archivos\\Documentos\\Librerias Externas Java\\javafx-sdk-17.0.6\\lib\\javafx.base.jar",
+		"c:\\Archivos\\Documentos\\Librerias Externas Java\\javafx-sdk-17.0.6\\lib\\javafx.controls.jar",
+		"c:\\Archivos\\Documentos\\Librerias Externas Java\\javafx-sdk-17.0.6\\lib\\javafx.fxml.jar",
+		"c:\\Archivos\\Documentos\\Librerias Externas Java\\javafx-sdk-17.0.6\\lib\\javafx.graphics.jar",
+		"c:\\Archivos\\Documentos\\Librerias Externas Java\\javafx-sdk-17.0.6\\lib\\javafx.media.jar",
+		"c:\\Archivos\\Documentos\\Librerias Externas Java\\javafx-sdk-17.0.6\\lib\\javafx.swing.jar",
+		"c:\\Archivos\\Documentos\\Librerias Externas Java\\javafx-sdk-17.0.6\\lib\\javafx.web.jar",
+		"c:\\Archivos\\Documentos\\Librerias Externas Java\\javafx-sdk-17.0.6\\lib\\javafx-swt.jar",
+		"c:\\Archivos\\Documentos\\Lib-Java\\javafx-sdk-17.0.6\\lib\\javafx.base.jar",
+		"c:\\Archivos\\Documentos\\Lib-Java\\javafx-sdk-17.0.6\\lib\\javafx.controls.jar",
+		"c:\\Archivos\\Documentos\\Lib-Java\\javafx-sdk-17.0.6\\lib\\javafx.fxml.jar",
+		"c:\\Archivos\\Documentos\\Lib-Java\\javafx-sdk-17.0.6\\lib\\javafx.graphics.jar",
+		"c:\\Archivos\\Documentos\\Lib-Java\\javafx-sdk-17.0.6\\lib\\javafx.media.jar",
+		"c:\\Archivos\\Documentos\\Lib-Java\\javafx-sdk-17.0.6\\lib\\javafx.swing.jar",
+		"c:\\Archivos\\Documentos\\Lib-Java\\javafx-sdk-17.0.6\\lib\\javafx.web.jar",
+		"c:\\Archivos\\Documentos\\Lib-Java\\javafx-sdk-17.0.6\\lib\\javafx-swt.jar",
+		"bibliotecas_utilizadas/commons-dbcp2-2.6.0.jar",
+		"bibliotecas_utilizadas/commons-logging-1.2.jar",
+		"bibliotecas_utilizadas/commons-pool2-2.6.2.jar",
+		"bibliotecas_utilizadas/mssql-jdbc-8.2.2.jre8.jar",
+		"bibliotecas_utilizadas/mysql-connector-java-8.0.16.jar"
 	]
 }
