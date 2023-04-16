@@ -1,21 +1,15 @@
 package controller;
+import controller.util.StageLoader;
+import model.UserDAO;
 
+import java.io.IOException;
 import javax.swing.JOptionPane;
-
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
-import javafx.stage.Window;
-import model.UserDAO;
 
 
 
@@ -50,7 +44,11 @@ public class LoginController {
                 if (state != -1) {
                     if (state == 1) {
                         JOptionPane.showMessageDialog(null, "Datos correctos", null, JOptionPane.WARNING_MESSAGE);
-                        loadStage("/view/viewLandingPage.fxml", event);
+                        try {
+                            StageLoader.load("/view/viewLandingPage.fxml", event);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "Datos correctos incorrectos", null, JOptionPane.WARNING_MESSAGE);
                     }
@@ -86,30 +84,6 @@ public class LoginController {
 
 
 
-    }
-
-    private void loadStage(String url, Event event){
-        try {
-            Object eventSource = event.getSource();
-            Node sourceAsNode = (Node) eventSource;
-            Scene oldScene = sourceAsNode.getScene();
-            Window window = oldScene.getWindow();
-            Stage stage = (Stage) window;
-            stage.hide();
-    
-            Parent root = FXMLLoader.load(getClass().getResource(url));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            Stage newStage = new Stage();
-            newStage.setScene(scene);
-            newStage.show();
-
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-
-        
-        
     }
 
 }

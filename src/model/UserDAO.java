@@ -61,41 +61,5 @@ public class UserDAO {
         return state;
         
     }
-
-public void cargarArchivo(String dir) {
-
-    Connection connection = null;
-    PreparedStatement pst;
-    ResultSet rs;
-
-    try {
-        connection = PoolConnection.getInstance().getConnection();
-
-        if(connection!=null){
-                
-            String sql = "SELECT * FROM alumnos WHERE numero_control=? AND password=?";
-            
-            pst = connection.prepareStatement(sql);
-            pst.setInt(1, matricula);
-            pst.setString(2, password);
-            
-            rs = pst.executeQuery();
-            
-            if(rs.next()){
-                state = 1;
-            }else{
-                state = 0;
-            }
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Hubo un error al conectarse con la base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        
-    } catch (Exception e) {
-        // TODO: handle exception
-    }
-
-}
-    
-    
+   
 }

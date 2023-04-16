@@ -2,7 +2,7 @@ INSERT INTO alumnos (nombre, numero_control, correo, password, carrera) VALUES
     (
         "Jonathan Osvaldo", 
         "21680045", 
-        "joniosva@gmail.com", 
+        "21680045@cuautla.tecnm.mx", 
         "lolxx4321", 
         "Sistemas Computacionales"
     ),
@@ -18,7 +18,7 @@ INSERT INTO alumnos (nombre, numero_control, correo, password, carrera) VALUES
         "", 
         "", 
         "", 
-        ""
+        "Sistemas Computacionales"
     );
 
 INSERT INTO tipos_archivo (nombre_archivo) VALUES 
