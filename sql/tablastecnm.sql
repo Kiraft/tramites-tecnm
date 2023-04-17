@@ -7,7 +7,9 @@ USE tramites_tecnm;
 
 CREATE TABLE alumnos (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL,
+    nombres VARCHAR(255) NOT NULL,
+    apellido_paterno VARCHAR(255) NOT NULL,
+    apellido_materno VARCHAR(255) NOT NULL,
     numero_control INT NOT NULL UNIQUE,
     correo VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,

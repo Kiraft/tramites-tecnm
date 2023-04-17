@@ -1,23 +1,29 @@
-INSERT INTO alumnos (nombre, numero_control, correo, password, carrera) VALUES 
+INSERT INTO alumnos (nombres, apellido_paterno, apellido_materno, numero_control, correo, password, carrera) VALUES 
     (
-        "Jonathan Osvaldo", 
+        "Jonathan Osvaldo",
+        "Bustamante",
+        "Monroy",   
         "21680045", 
         "21680045@cuautla.tecnm.mx", 
         "lolxx4321", 
         "Sistemas Computacionales"
     ),
     (
-        "Aby", 
-        "", 
-        "", 
-        "", 
+        "Mayra Abigail", 
+        "Horcasitas", 
+        "Santamaria",
+        "21680175",
+        "21680175@cuautla.tecnm.mx", 
+        "aby4321", 
         "Sistemas Computacionales"
     ),
     (
-        "Said", 
-        "", 
-        "", 
-        "", 
+        "Said Alberto", 
+        "Sanchez",
+        "Valle",
+        "20680183", 
+        "20680183@cuautla.tecnm.mx", 
+        "zaidzaid123", 
         "Sistemas Computacionales"
     );
 

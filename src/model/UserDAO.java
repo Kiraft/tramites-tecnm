@@ -10,7 +10,14 @@ import javax.swing.JOptionPane;
 
 
 public class UserDAO {
-    
+    // int matricula;
+    // String password;
+
+    // public UserDAO(int matricula, String password){
+    //     this.matricula = matricula;
+    //     this.password = password;
+    // }
+
     public int login (int matricula, String password){
         
         Connection connection = null;
@@ -61,5 +68,25 @@ public class UserDAO {
         return state;
         
     }
+
+    // public void insertRute(){
+    //     Connection connection = null;
+    //     PreparedStatement pst;
+    //     ResultSet rs;     
+        
+    //     try {
+    //         connection = PoolConnection.getInstance().getConnection();
+
+    //         if (connection != null) {
+    //             String sql = "INSERT INTO  ";
+    //         } else {
+                
+    //         }
+    //     } catch (Exception e) {
+    //         // TODO: handle exception
+    //     }
+    // }
+
+
    
 }

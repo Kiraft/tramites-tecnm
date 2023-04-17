@@ -1,24 +1,22 @@
 package controller;
 
 import java.io.File;
+import java.io.IOException;
+import controller.util.StageLoader;
 
 import javax.swing.JOptionPane;
 
+import com.mysql.cj.result.Field;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class controllerArchivo {
 
@@ -93,24 +91,59 @@ public class controllerArchivo {
 
     @FXML
     void MouseClicked(MouseEvent event) {
-        loadStage("/view/viewLandingPage.fxml", event);
+        try {
+            StageLoader.load("/view/viewLandingPage.fxml", event);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void clickBtn(ActionEvent event) {
         if (event.getSource().equals(btnMenu)) {
-            loadStage("/view/viewLandingPage.fxml", event);
+            try {
+                StageLoader.load("/view/viewLandingPage.fxml", event);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         } else if(event.getSource().equals(btnSubir)) {
-            loadStage("/view/viewArchivos.fxml", event);
+            try {
+                StageLoader.load("/view/viewArchivos.fxml", event);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }else if(event.getSource().equals(btnMyDocs)){
-            loadStage("/view/viewStatus.fxml", event);
+            try {
+                StageLoader.load("/view/viewStatus.fxml", event);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }else if(event.getSource().equals(btnFinish)){
             JOptionPane.showMessageDialog(null, "HAZ FINALIZADO TU TRAMITE CON EXITO", null, JOptionPane.WARNING_MESSAGE);
-            loadStage("/view/viewLandingPage.fxml", event);
+            try {
+                StageLoader.load("/view/viewLandingPage.fxml", event);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }else if(event.getSource().equals(btnHelp)){
-            loadStage("/view/viewAyuda.fxml", event);
+            try {
+                StageLoader.load("/view/viewAyuda.fxml", event);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }else{
-            loadStage("/view/ViewLogin.fxml", event);
+            try {
+                StageLoader.load("/view/ViewLogin.fxml", event);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
 
     }
@@ -118,25 +151,25 @@ public class controllerArchivo {
     @FXML
     void cargarArchivo(ActionEvent event) {
         if (event.getSource().equals(btnSubirArchivo1)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo1);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo1, labelSubir1);
         } else if (event.getSource().equals(btnSubirArchivo2)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo2);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo2, labelSubir2);
         } else if (event.getSource().equals(btnSubirArchivo3)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo3);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo3, labelSubir3);
         } else if (event.getSource().equals(btnSubirArchivo4)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo4);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo4, labelSubir4);
         } else if (event.getSource().equals(btnSubirArchivo5)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo5);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo5, labelSubir5);
         } else if (event.getSource().equals(btnSubirArchivo6)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo6);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo6, labelSubir6);
         } else if (event.getSource().equals(btnSubirArchivo7)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo7);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo7, labelSubir7);
         } else if (event.getSource().equals(btnSubirArchivo8)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo8);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo8, labelSubir8);
         }
     }
     
-    private void cargarArchivoEnHiloSecundario(Button botonSubirArchivo) {
+    private void cargarArchivoEnHiloSecundario(Button botonSubirArchivo, Label labelSubir) {
         Thread hiloCargaArchivo = new Thread(() -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Selecciona un archivo");
@@ -147,8 +180,25 @@ public class controllerArchivo {
                 File file = fileChooser.showOpenDialog(stage);
     
                 if (file != null) {
-                    JOptionPane.showMessageDialog(null, "Archivo cargado", null, JOptionPane.WARNING_MESSAGE);
-                    botonSubirArchivo.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
+                    // JOptionPane.showMessageDialog(null, "Archivo cargado", null, JOptionPane.WARNING_MESSAGE);
+                    
+                    String NombreArchivo = file.getName();
+                    
+                    File CarpetaDestino = new File("C:/Users/Kiraft/Desktop/tramites-tecnm/docs/");
+                    
+                    if (!CarpetaDestino.exists()) {
+                        CarpetaDestino.mkdir();
+                    }
+                    
+                    File Destino = new File(CarpetaDestino.getAbsolutePath() + File.separator + NombreArchivo);
+                    
+                    if (file.renameTo(Destino)) {
+                        labelSubir.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error al guardar archivo en bd", null, JOptionPane.WARNING_MESSAGE);
+                    }
+
+                    
                 }
             };
     
@@ -158,26 +208,6 @@ public class controllerArchivo {
         hiloCargaArchivo.start();
     }
 
-    private void loadStage(String url, Event event){
-        try {
-            Object eventSource = event.getSource();
-            Node sourceAsNode = (Node) eventSource;
-            Scene oldScene = sourceAsNode.getScene();
-            Window window = oldScene.getWindow();
-            Stage stage = (Stage) window;
-            stage.hide();
-    
-            Parent root = FXMLLoader.load(getClass().getResource(url));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            Stage newStage = new Stage();
-            newStage.setScene(scene);
-            newStage.show();
-
-        } catch (Exception e) {
-            
-        }
-    }
 
 }
 

@@ -42,6 +42,7 @@
 		"bibliotecas_utilizadas/commons-logging-1.2.jar",
 		"bibliotecas_utilizadas/commons-pool2-2.6.2.jar",
 		"bibliotecas_utilizadas/mssql-jdbc-8.2.2.jre8.jar",
-		"bibliotecas_utilizadas/mysql-connector-java-8.0.16.jar"
+		"bibliotecas_utilizadas/mysql-connector-java-8.0.16.jar",
+		"c:\\Users\\Kiraft\\Documents\\javafx-sdk-17.0.6\\lib\\javafx-swt.jar"
 	]
 }
