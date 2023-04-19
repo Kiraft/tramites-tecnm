@@ -5,9 +5,6 @@ import java.io.IOException;
 import controller.util.StageLoader;
 
 import javax.swing.JOptionPane;
-
-import com.mysql.cj.result.Field;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -183,7 +180,7 @@ public class controllerArchivo {
                     // JOptionPane.showMessageDialog(null, "Archivo cargado", null, JOptionPane.WARNING_MESSAGE);
                     
                     String NombreArchivo = file.getName();
-                    
+            
                     File CarpetaDestino = new File("C:/Users/Kiraft/Desktop/tramites-tecnm/docs/");
                     
                     if (!CarpetaDestino.exists()) {

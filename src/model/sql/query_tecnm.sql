@@ -27,28 +27,28 @@ INSERT INTO alumnos (nombres, apellido_paterno, apellido_materno, numero_control
         "Sistemas Computacionales"
     );
 
-INSERT INTO tipos_archivo (nombre_archivo) VALUES 
-    (
-        "solicitud"
-    ),
-    (
-        "carta compromiso"
-    ),
-    (
-        "plan de trabajo"
-    ),
-    (
-        "carta de asignacion"
-    ),
-    (
-        "carta aceptacion"
-    ),
-    (
-        "formato de evaluacion"
-    ),
-    (
-        "carta de terminacion"
-    ),
-    (
-        "reporte final de actividad"
-    );
+-- INSERT INTO tipos_archivo (nombre_archivo) VALUES 
+--     (
+--         "solicitud"
+--     ),
+--     (
+--         "carta compromiso"
+--     ),
+--     (
+--         "plan de trabajo"
+--     ),
+--     (
+--         "carta de asignacion"
+--     ),
+--     (
+--         "carta aceptacion"
+--     ),
+--     (
+--         "formato de evaluacion"
+--     ),
+--     (
+--         "carta de terminacion"
+--     ),
+--     (
+--         "reporte final de actividad"
+--     );

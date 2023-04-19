@@ -43,6 +43,11 @@
 		"bibliotecas_utilizadas/commons-pool2-2.6.2.jar",
 		"bibliotecas_utilizadas/mssql-jdbc-8.2.2.jre8.jar",
 		"bibliotecas_utilizadas/mysql-connector-java-8.0.16.jar",
-		"c:\\Users\\Kiraft\\Documents\\javafx-sdk-17.0.6\\lib\\javafx-swt.jar"
+		"c:\\Users\\Kiraft\\Documents\\javafx-sdk-17.0.6\\lib\\javafx-swt.jar",
+		"src/lib/commons-dbcp2-2.6.0.jar",
+		"src/lib/commons-logging-1.2.jar",
+		"src/lib/commons-pool2-2.6.2.jar",
+		"src/lib/mssql-jdbc-8.2.2.jre8.jar",
+		"src/lib/mysql-connector-java-8.0.16.jar"
 	]
 }
