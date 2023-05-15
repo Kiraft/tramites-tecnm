@@ -172,7 +172,7 @@ public class controllerArchivo {
             fileChooser.setTitle("Selecciona un archivo");
             Stage stage = (Stage) botonSubirArchivo.getScene().getWindow();
     
-            // Envuelve el código de selección de archivo en un Runnable
+            
             Runnable fileChooserRunnable = () -> {
                 File file = fileChooser.showOpenDialog(stage);
     
@@ -180,8 +180,10 @@ public class controllerArchivo {
                     // JOptionPane.showMessageDialog(null, "Archivo cargado", null, JOptionPane.WARNING_MESSAGE);
                     
                     String NombreArchivo = file.getName();
+
+                    String NombreAlumno = "Bustamante";
             
-                    File CarpetaDestino = new File("C:/Users/Kiraft/Desktop/tramites-tecnm/docs/");
+                    File CarpetaDestino = new File("C:/Users/Kiraft/Desktop/tramites-tecnm/docs/" + NombreAlumno+ "/");
                     
                     if (!CarpetaDestino.exists()) {
                         CarpetaDestino.mkdir();
@@ -191,6 +193,8 @@ public class controllerArchivo {
                     
                     if (file.renameTo(Destino)) {
                         labelSubir.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
+                        //Query de cargado de archivo
+                        
                     } else {
                         JOptionPane.showMessageDialog(null, "Error al guardar archivo en bd", null, JOptionPane.WARNING_MESSAGE);
                     }
