@@ -1,5 +1,6 @@
 package controller;
-import controller.util.StageLoader;
+import controller.util.MatriculaModel;
+import controller.util.StageLoaderMatricula;
 import model.UserDAO;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class LoginController {
     @FXML
     private TextField txtUser;
 
+
     @FXML
     private void eventAction(ActionEvent event) {
         
@@ -45,7 +47,8 @@ public class LoginController {
                     if (state == 1) {
                         JOptionPane.showMessageDialog(null, "Datos correctos", null, JOptionPane.WARNING_MESSAGE);
                         try {
-                            StageLoader.load("/view/viewLandingPage.fxml", event);
+                            MatriculaModel matriculaModel = new MatriculaModel(matricula);
+                            StageLoaderMatricula.load("/view/viewLandingPage.fxml", event, matriculaModel);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

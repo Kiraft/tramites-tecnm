@@ -25,6 +25,8 @@ public class ayudaController {
     @FXML
     private ImageView logoHome;
 
+    
+
     @FXML
     void click(MouseEvent event) {
 

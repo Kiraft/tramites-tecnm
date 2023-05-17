@@ -34,6 +34,8 @@ public class controllerStatus {
     @FXML
     private ImageView logoHome;
 
+    
+
     @FXML
     void MouseClicked(MouseEvent event) {
         try {

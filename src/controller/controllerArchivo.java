@@ -86,6 +86,8 @@ public class controllerArchivo {
     @FXML
     private ImageView logoHome;
 
+    
+
     @FXML
     void MouseClicked(MouseEvent event) {
         try {
