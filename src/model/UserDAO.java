@@ -109,7 +109,7 @@ public class UserDAO {
     }
 
 
-    public void settArchivo(int matricula, String ruta_archivo, int tamano_archivo) {
+    public void setArchivo(int matricula, String ruta_archivo, int tamano_archivo) {
         
         Connection connection = null;
         PreparedStatement pst;
@@ -164,7 +164,6 @@ public class UserDAO {
         PreparedStatement pst;
         ResultSet rs;
         String nombre = null;
-
         
     	try{
             
@@ -172,7 +171,7 @@ public class UserDAO {
             
             if(connection!=null){
                 
-                String sql = "SELECT nombres, apellido_paterno, apellido_materno from alumnos WHERE matricula = ?";
+                String sql = "SELECT nombres from alumnos WHERE numero_control = ?";
                 
                 pst = connection.prepareStatement(sql);
                 pst.setInt(1, matricula);
@@ -181,7 +180,7 @@ public class UserDAO {
                 
                 
                 if (rs.next()) {
-                    nombre = rs.getString("nombres") + rs.getString("apellido_paterno") + rs.getString("apellido_materno");
+                    nombre = rs.getString("nombres");
                 }
 
             }else{
@@ -203,6 +202,52 @@ public class UserDAO {
 
         }
         return nombre;        
+    }
+
+    public String getCarrera(int matricula){
+
+        Connection connection = null;
+        PreparedStatement pst;
+        ResultSet rs;
+        String carrera = null;
+        
+    	try{
+            
+            connection = PoolConnection.getInstance().getConnection();
+            
+            if(connection!=null){
+                
+                String sql = "SELECT carrera from alumnos WHERE numero_control = ?";
+                
+                pst = connection.prepareStatement(sql);
+                pst.setInt(1, matricula);
+                
+                rs = pst.executeQuery();
+                
+                
+                if (rs.next()) {
+                    carrera = rs.getString("carrera");
+                }
+
+            }else{
+                JOptionPane.showMessageDialog(null, "Hubo un error al conectarse con la base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(null, "Hubo un error de ejecución, posibles errores:\n"
+                                              + ex.getMessage());
+        }finally{
+            
+            try{
+                if(connection != null){
+                    PoolConnection.getInstance().closeConnection(connection);            
+                }            
+            }catch(SQLException ex){
+                System.err.println(ex.getMessage());            
+            }
+
+        }
+        return carrera;        
     }
     
 }
