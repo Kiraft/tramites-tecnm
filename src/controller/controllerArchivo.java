@@ -2,7 +2,9 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
-import controller.util.StageLoader;
+
+import controller.util.MatriculaModel;
+import controller.util.StageLoaderMatricula;
 
 import javax.swing.JOptionPane;
 import javafx.application.Platform;
@@ -14,6 +16,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.AlumnoDAO;
+import model.ArchivosDAO;
 
 public class controllerArchivo {
 
@@ -86,12 +90,19 @@ public class controllerArchivo {
     @FXML
     private ImageView logoHome;
 
-    
+    private MatriculaModel matriculaModel;
+
+    public void setMatriculaModel(MatriculaModel matriculaModel) {
+        this.matriculaModel = matriculaModel;
+    }
+
+    private AlumnoDAO ADAO = new AlumnoDAO();
+    private ArchivosDAO ARDAO = new ArchivosDAO();
 
     @FXML
     void MouseClicked(MouseEvent event) {
         try {
-            StageLoader.load("/view/viewLandingPage.fxml", event);
+            StageLoaderMatricula.load("/view/viewLandingPage.fxml", event, matriculaModel);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -102,21 +113,21 @@ public class controllerArchivo {
     void clickBtn(ActionEvent event) {
         if (event.getSource().equals(btnMenu)) {
             try {
-                StageLoader.load("/view/viewLandingPage.fxml", event);
+                StageLoaderMatricula.load("/view/viewLandingPage.fxml", event, matriculaModel);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else if(event.getSource().equals(btnSubir)) {
             try {
-                StageLoader.load("/view/viewArchivos.fxml", event);
+                StageLoaderMatricula.load("/view/viewArchivos.fxml", event, matriculaModel);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }else if(event.getSource().equals(btnMyDocs)){
             try {
-                StageLoader.load("/view/viewStatus.fxml", event);
+                StageLoaderMatricula.load("/view/viewStatus.fxml", event, matriculaModel);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -124,21 +135,14 @@ public class controllerArchivo {
         }else if(event.getSource().equals(btnFinish)){
             JOptionPane.showMessageDialog(null, "HAZ FINALIZADO TU TRAMITE CON EXITO", null, JOptionPane.WARNING_MESSAGE);
             try {
-                StageLoader.load("/view/viewLandingPage.fxml", event);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }else if(event.getSource().equals(btnHelp)){
-            try {
-                StageLoader.load("/view/viewAyuda.fxml", event);
+                StageLoaderMatricula.load("/view/viewLandingPage.fxml", event, matriculaModel);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }else{
             try {
-                StageLoader.load("/view/ViewLogin.fxml", event);
+                StageLoaderMatricula.load("/view/ViewLogin.fxml", event, null);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -150,25 +154,26 @@ public class controllerArchivo {
     @FXML
     void cargarArchivo(ActionEvent event) {
         if (event.getSource().equals(btnSubirArchivo1)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo1, labelSubir1);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo1, labelSubir1, 1);
         } else if (event.getSource().equals(btnSubirArchivo2)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo2, labelSubir2);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo2, labelSubir2, 2);
         } else if (event.getSource().equals(btnSubirArchivo3)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo3, labelSubir3);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo3, labelSubir3, 3);
         } else if (event.getSource().equals(btnSubirArchivo4)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo4, labelSubir4);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo4, labelSubir4, 4);
         } else if (event.getSource().equals(btnSubirArchivo5)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo5, labelSubir5);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo5, labelSubir5, 5);
         } else if (event.getSource().equals(btnSubirArchivo6)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo6, labelSubir6);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo6, labelSubir6, 6);
         } else if (event.getSource().equals(btnSubirArchivo7)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo7, labelSubir7);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo7, labelSubir7, 7);
         } else if (event.getSource().equals(btnSubirArchivo8)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo8, labelSubir8);
+            cargarArchivoEnHiloSecundario(btnSubirArchivo8, labelSubir8, 8);
         }
     }
     
-    private void cargarArchivoEnHiloSecundario(Button botonSubirArchivo, Label labelSubir) {
+    private void cargarArchivoEnHiloSecundario(Button botonSubirArchivo, Label labelSubir, int id_archivo) {
+
         Thread hiloCargaArchivo = new Thread(() -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Selecciona un archivo");
@@ -183,9 +188,9 @@ public class controllerArchivo {
                     
                     String NombreArchivo = file.getName();
 
-                    String NombreAlumno = "Bustamante";
+                    String NombreAlumno = String.valueOf(ADAO.getNombre(matriculaModel.getMatricula()));
             
-                    File CarpetaDestino = new File("C:/Users/Kiraft/Desktop/tramites-tecnm/docs/" + NombreAlumno+ "/");
+                    File CarpetaDestino = new File("C:/Users/Kiraft/Desktop/tramites-tecnm/docs/" + NombreAlumno + "/");
                     
                     if (!CarpetaDestino.exists()) {
                         CarpetaDestino.mkdir();
@@ -196,6 +201,7 @@ public class controllerArchivo {
                     if (file.renameTo(Destino)) {
                         labelSubir.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
                         //Query de cargado de archivo
+                        ARDAO.setArchivo(matriculaModel.getMatricula(), CarpetaDestino.getAbsolutePath(), id_archivo);
                         
                     } else {
                         JOptionPane.showMessageDialog(null, "Error al guardar archivo en bd", null, JOptionPane.WARNING_MESSAGE);

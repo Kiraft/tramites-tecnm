@@ -7,11 +7,11 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import controller.util.MatriculaModel;
-import controller.util.StageLoader;
+import controller.util.StageLoaderMatricula;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
-import model.UserDAO;
+import model.AlumnoDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -46,7 +46,7 @@ public class controllerLandingPage implements Initializable {
 
     private MatriculaModel matriculaModel;
 
-    private UserDAO UDAO = new UserDAO();
+    private AlumnoDAO ADAO = new AlumnoDAO();
 
     public void setMatriculaModel(MatriculaModel matriculaModel) {
         this.matriculaModel = matriculaModel;
@@ -58,7 +58,7 @@ public class controllerLandingPage implements Initializable {
         if (event.getSource().equals(btnService)) {
             System.out.println(matriculaModel.getMatricula());
             try {
-                StageLoader.load("/view/viewStatus.fxml", event);
+                StageLoaderMatricula.load("/view/viewStatus.fxml", event, matriculaModel);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -72,7 +72,7 @@ public class controllerLandingPage implements Initializable {
     @FXML
     void clickLogo(MouseEvent event) {
         try {
-            StageLoader.load("/view/viewLandingPage.fxml", event);
+            StageLoaderMatricula.load("/view/viewLandingPage.fxml", event, matriculaModel);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -89,9 +89,10 @@ public class controllerLandingPage implements Initializable {
             }
     
             Platform.runLater(() -> {
-                LabelNombre.setText(String.valueOf(UDAO.getNombre(matriculaModel.getMatricula())));
+                LabelNombre.setText(String.valueOf(ADAO.getNombre(matriculaModel.getMatricula())));
                 LabelControl.setText(String.valueOf(matriculaModel.getMatricula()));
-                LabelCarrera.setText(String.valueOf(UDAO.getCarrera(matriculaModel.getMatricula())));
+                LabelCarrera.setText(String.valueOf(ADAO.getCarrera(matriculaModel.getMatricula())));
+                LabelCorreo.setText(String.valueOf(ADAO.getCorreo(matriculaModel.getMatricula())));
             });
         });
     

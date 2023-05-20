@@ -3,7 +3,8 @@ package controller;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
-import controller.util.StageLoader;
+import controller.util.MatriculaModel;
+import controller.util.StageLoaderMatricula;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -34,12 +35,17 @@ public class controllerStatus {
     @FXML
     private ImageView logoHome;
 
-    
+    private MatriculaModel matriculaModel;
+
+    public void setMatriculaModel(MatriculaModel matriculaModel) {
+        this.matriculaModel = matriculaModel;
+    }
+
 
     @FXML
     void MouseClicked(MouseEvent event) {
         try {
-            StageLoader.load("/view/viewLandingPage.fxml", event);
+            StageLoaderMatricula.load("/view/viewLandingPage.fxml", event, matriculaModel);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -51,21 +57,21 @@ public class controllerStatus {
         
         if (event.getSource().equals(btnMenu)) {
             try {
-                StageLoader.load("/view/viewLandingPage.fxml", event);
+                StageLoaderMatricula.load("/view/viewLandingPage.fxml", event, matriculaModel);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else if(event.getSource().equals(btnSubir)) {
             try {
-                StageLoader.load("/view/viewArchivos.fxml", event);
+                StageLoaderMatricula.load("/view/viewArchivos.fxml", event, matriculaModel);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }else if(event.getSource().equals(btnMyDocs)){
             try {
-                StageLoader.load("/view/viewStatus.fxml", event);
+                StageLoaderMatricula.load("/view/viewStatus.fxml", event, matriculaModel);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -73,21 +79,14 @@ public class controllerStatus {
         }else if(event.getSource().equals(btnFinish)){
             JOptionPane.showMessageDialog(null, "HAZ FINALIZADO TU TRAMITE CON EXITO", null, JOptionPane.WARNING_MESSAGE);
             try {
-                StageLoader.load("/view/viewLandingPage.fxml", event);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }else if(event.getSource().equals(btnHelp)){
-            try {
-                StageLoader.load("/view/viewAyuda.fxml", event);
+                StageLoaderMatricula.load("/view/viewLandingPage.fxml", event, matriculaModel);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }else{
             try {
-                StageLoader.load("/view/ViewLogin.fxml", event);
+                StageLoaderMatricula.load("/view/ViewLogin.fxml", event, null);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

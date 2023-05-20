@@ -1,7 +1,7 @@
 package controller;
 import controller.util.MatriculaModel;
 import controller.util.StageLoaderMatricula;
-import model.UserDAO;
+import model.AlumnoDAO;
 
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -16,7 +16,7 @@ import javafx.scene.input.KeyEvent;
 
 public class LoginController {
 
-    private UserDAO UDAO = new UserDAO();
+    private AlumnoDAO ADAO = new AlumnoDAO();
 
     @FXML
     private Button btnLogin;
@@ -39,7 +39,7 @@ public class LoginController {
                 int matricula = Integer.parseInt(txtUser.getText());
                 String pass = txtPassword.getText();
 
-                int state = UDAO.login(matricula, pass);
+                int state = ADAO.login(matricula, pass);
                 
                 System.out.println(state);
                 
