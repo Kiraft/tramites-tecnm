@@ -3,6 +3,8 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import controller.util.MatriculaModel;
@@ -125,6 +127,7 @@ public class controllerArchivo implements Initializable {
     }
 
     private AlumnoDAO ADAO = new AlumnoDAO();
+
     private ArchivosDAO ARDAO = new ArchivosDAO();
 
     @FXML
@@ -258,7 +261,7 @@ public class controllerArchivo implements Initializable {
 
     private void BorrarArchivo(ImageView imageView, Label labelSubir, Button botonSubirArchivo, int idRegistro) {
         ARDAO.deleteArchivo(matriculaModel.getMatricula(), idRegistro);
-        labelSubir.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
+        labelSubir.setStyle("-fx-background-color: #EB4545; -fx-text-fill: white;");
         botonSubirArchivo.setDisable(false);
         imageView.setVisible(false);
         imageView.setDisable(true);
@@ -293,22 +296,38 @@ public class controllerArchivo implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        Thread hilo = new Thread(() -> {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+public void initialize(URL location, ResourceBundle resources) {
+    Thread hilo = new Thread(() -> {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Platform.runLater(() -> {
+            int matricula = matriculaModel.getMatricula();
+            List<Button> buttons = Arrays.asList(btnSubirArchivo1, btnSubirArchivo2, btnSubirArchivo3, btnSubirArchivo4, btnSubirArchivo5, btnSubirArchivo6, btnSubirArchivo7, btnSubirArchivo8);
+            List<Label> labels = Arrays.asList(labelSubir1, labelSubir2, labelSubir3, labelSubir4, labelSubir5, labelSubir6, labelSubir7, labelSubir8);
+            List<ImageView> trashImages = Arrays.asList(imgtrash1, imgtrash2, imgtrash3, imgtrash4, imgtrash5, imgtrash6, imgtrash7, imgtrash8);
+
+            for (int i = 1; i <= buttons.size(); i++) {
+                boolean botonSubido = ARDAO.getStatusSubido(matricula, i);
+                Button button = buttons.get(i - 1);
+                Label label = labels.get(i - 1);
+                ImageView trashImage = trashImages.get(i - 1);
+
+                if (botonSubido) {
+                    button.setDisable(true);
+                    label.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
+                    trashImage.setVisible(true);
+                    trashImage.setDisable(false);
+                }
             }
-    
-            Platform.runLater(() -> {
-
-            });
         });
-    
-        hilo.start();
-    }
+    });
 
+    hilo.start();
+}
 
 }
 
