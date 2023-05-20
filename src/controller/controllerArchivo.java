@@ -2,6 +2,8 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import controller.util.MatriculaModel;
 import controller.util.StageLoaderMatricula;
@@ -10,6 +12,7 @@ import javax.swing.JOptionPane;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -19,7 +22,32 @@ import javafx.stage.Stage;
 import model.AlumnoDAO;
 import model.ArchivosDAO;
 
-public class controllerArchivo {
+public class controllerArchivo implements Initializable {
+
+    @FXML
+    private ImageView imgtrash1;
+
+    @FXML
+    private ImageView imgtrash2;
+
+    @FXML
+    private ImageView imgtrash3;
+
+    @FXML
+    private ImageView imgtrash4;
+
+    @FXML
+    private ImageView imgtrash5;
+
+    @FXML
+    private ImageView imgtrash6;
+
+    @FXML
+    private ImageView imgtrash7;
+
+    @FXML
+    private ImageView imgtrash8;
+
 
     @FXML
     private Button btnClose;
@@ -154,25 +182,32 @@ public class controllerArchivo {
     @FXML
     void cargarArchivo(ActionEvent event) {
         if (event.getSource().equals(btnSubirArchivo1)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo1, labelSubir1, 1);
+            cargarArchivoEnHiloSecundario(imgtrash1, btnSubirArchivo1, labelSubir1, 1);
+
         } else if (event.getSource().equals(btnSubirArchivo2)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo2, labelSubir2, 2);
+            cargarArchivoEnHiloSecundario(imgtrash2, btnSubirArchivo2, labelSubir2, 2);
+
         } else if (event.getSource().equals(btnSubirArchivo3)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo3, labelSubir3, 3);
+            cargarArchivoEnHiloSecundario(imgtrash3, btnSubirArchivo3, labelSubir3, 3);
+
         } else if (event.getSource().equals(btnSubirArchivo4)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo4, labelSubir4, 4);
+            cargarArchivoEnHiloSecundario(imgtrash4, btnSubirArchivo4, labelSubir4, 4);
+
         } else if (event.getSource().equals(btnSubirArchivo5)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo5, labelSubir5, 5);
+            cargarArchivoEnHiloSecundario(imgtrash5, btnSubirArchivo5, labelSubir5, 5);
+
         } else if (event.getSource().equals(btnSubirArchivo6)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo6, labelSubir6, 6);
+            cargarArchivoEnHiloSecundario(imgtrash6, btnSubirArchivo6, labelSubir6, 6);
+
         } else if (event.getSource().equals(btnSubirArchivo7)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo7, labelSubir7, 7);
+            cargarArchivoEnHiloSecundario(imgtrash7, btnSubirArchivo7, labelSubir7, 7);
+
         } else if (event.getSource().equals(btnSubirArchivo8)) {
-            cargarArchivoEnHiloSecundario(btnSubirArchivo8, labelSubir8, 8);
+            cargarArchivoEnHiloSecundario(imgtrash8, btnSubirArchivo8, labelSubir8, 8);
         }
     }
     
-    private void cargarArchivoEnHiloSecundario(Button botonSubirArchivo, Label labelSubir, int id_archivo) {
+    private void cargarArchivoEnHiloSecundario(ImageView imageView, Button botonSubirArchivo, Label labelSubir, int id_archivo) {
 
         Thread hiloCargaArchivo = new Thread(() -> {
             FileChooser fileChooser = new FileChooser();
@@ -184,7 +219,6 @@ public class controllerArchivo {
                 File file = fileChooser.showOpenDialog(stage);
     
                 if (file != null) {
-                    // JOptionPane.showMessageDialog(null, "Archivo cargado", null, JOptionPane.WARNING_MESSAGE);
                     
                     String NombreArchivo = file.getName();
 
@@ -202,7 +236,12 @@ public class controllerArchivo {
                         labelSubir.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
                         //Query de cargado de archivo
                         ARDAO.setArchivo(matriculaModel.getMatricula(), CarpetaDestino.getAbsolutePath(), id_archivo);
-                        
+
+                        botonSubirArchivo.setDisable(true);
+                        imageView.setVisible(true);
+                        imageView.setDisable(false);
+
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Error al guardar archivo en bd", null, JOptionPane.WARNING_MESSAGE);
                     }
@@ -215,6 +254,59 @@ public class controllerArchivo {
             Platform.runLater(fileChooserRunnable);
         });
         hiloCargaArchivo.start();
+    }
+
+    private void BorrarArchivo(ImageView imageView, Label labelSubir, Button botonSubirArchivo, int idRegistro) {
+        ARDAO.deleteArchivo(matriculaModel.getMatricula(), idRegistro);
+        labelSubir.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
+        botonSubirArchivo.setDisable(false);
+        imageView.setVisible(false);
+        imageView.setDisable(true);
+    }
+
+    @FXML
+    void trashClic(MouseEvent event) {
+        if (event.getSource().equals(imgtrash1)) {
+            BorrarArchivo(imgtrash1, labelSubir1, btnSubirArchivo1, 1 );
+
+        } else if (event.getSource().equals(imgtrash2)) {
+            BorrarArchivo(imgtrash2, labelSubir2, btnSubirArchivo2, 2);
+
+        } else if (event.getSource().equals(imgtrash3)) {
+            BorrarArchivo(imgtrash3, labelSubir3, btnSubirArchivo3, 3 );
+
+        } else if (event.getSource().equals(imgtrash4)) {
+            BorrarArchivo(imgtrash4, labelSubir4, btnSubirArchivo4, 4);
+
+        } else if (event.getSource().equals(imgtrash5)) {
+            BorrarArchivo(imgtrash5, labelSubir5, btnSubirArchivo5, 5);
+
+        } else if (event.getSource().equals(imgtrash6)) {
+            BorrarArchivo(imgtrash6, labelSubir6, btnSubirArchivo6, 6);
+
+        } else if (event.getSource().equals(imgtrash7)) {
+            BorrarArchivo(imgtrash7, labelSubir7, btnSubirArchivo7, 7);
+
+        } else if (event.getSource().equals(imgtrash8)) {
+            BorrarArchivo(imgtrash8, labelSubir8, btnSubirArchivo8, 8);
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Thread hilo = new Thread(() -> {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+    
+            Platform.runLater(() -> {
+
+            });
+        });
+    
+        hilo.start();
     }
 
 

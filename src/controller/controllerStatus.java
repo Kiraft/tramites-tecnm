@@ -1,18 +1,48 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javax.swing.JOptionPane;
 
 import controller.util.MatriculaModel;
 import controller.util.StageLoaderMatricula;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 
-public class controllerStatus {
+public class controllerStatus implements Initializable{
+
+    @FXML
+    private Label LabelStatus1;
+
+    @FXML
+    private Label LabelStatus2;
+
+    @FXML
+    private Label LabelStatus3;
+
+    @FXML
+    private Label LabelStatus4;
+
+    @FXML
+    private Label LabelStatus5;
+
+    @FXML
+    private Label LabelStatus6;
+
+    @FXML
+    private Label LabelStatus7;
+
+    @FXML
+    private Label LabelStatus8;
 
     @FXML
     private Button btnClose;
@@ -93,6 +123,24 @@ public class controllerStatus {
             }
         }
 
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Thread hilo = new Thread(() -> {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+    
+            Platform.runLater(() -> {
+    
+            });
+        });
+    
+        hilo.start();
     }
 
 }
