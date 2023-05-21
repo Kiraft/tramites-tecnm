@@ -3,6 +3,7 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -217,6 +218,8 @@ public class controllerArchivo implements Initializable {
             fileChooser.setTitle("Selecciona un archivo");
             Stage stage = (Stage) botonSubirArchivo.getScene().getWindow();
     
+            FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Archivos PDF", "*.pdf");
+            fileChooser.getExtensionFilters().add(extensionFilter);
             
             Runnable fileChooserRunnable = () -> {
                 File file = fileChooser.showOpenDialog(stage);
@@ -238,10 +241,9 @@ public class controllerArchivo implements Initializable {
                     if (file.renameTo(Destino)) {
                         labelSubir.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
                         //Query de cargado de archivo
-                        ARDAO.setArchivo(matriculaModel.getMatricula(), CarpetaDestino.getAbsolutePath(), id_archivo);
+                        ARDAO.setArchivo(matriculaModel.getMatricula(), Destino.getAbsolutePath(), id_archivo);
 
                         botonSubirArchivo.setDisable(true);
-                        imageView.setVisible(true);
                         imageView.setDisable(false);
 
 
@@ -263,7 +265,6 @@ public class controllerArchivo implements Initializable {
         ARDAO.deleteArchivo(matriculaModel.getMatricula(), idRegistro);
         labelSubir.setStyle("-fx-background-color: #EB4545; -fx-text-fill: white;");
         botonSubirArchivo.setDisable(false);
-        imageView.setVisible(false);
         imageView.setDisable(true);
     }
 
@@ -296,38 +297,76 @@ public class controllerArchivo implements Initializable {
     }
 
     @Override
-public void initialize(URL location, ResourceBundle resources) {
-    Thread hilo = new Thread(() -> {
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        Platform.runLater(() -> {
-            int matricula = matriculaModel.getMatricula();
-            List<Button> buttons = Arrays.asList(btnSubirArchivo1, btnSubirArchivo2, btnSubirArchivo3, btnSubirArchivo4, btnSubirArchivo5, btnSubirArchivo6, btnSubirArchivo7, btnSubirArchivo8);
-            List<Label> labels = Arrays.asList(labelSubir1, labelSubir2, labelSubir3, labelSubir4, labelSubir5, labelSubir6, labelSubir7, labelSubir8);
-            List<ImageView> trashImages = Arrays.asList(imgtrash1, imgtrash2, imgtrash3, imgtrash4, imgtrash5, imgtrash6, imgtrash7, imgtrash8);
-
-            for (int i = 1; i <= buttons.size(); i++) {
-                boolean botonSubido = ARDAO.getStatusSubido(matricula, i);
-                Button button = buttons.get(i - 1);
-                Label label = labels.get(i - 1);
-                ImageView trashImage = trashImages.get(i - 1);
-
-                if (botonSubido) {
-                    button.setDisable(true);
-                    label.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
-                    trashImage.setVisible(true);
-                    trashImage.setDisable(false);
-                }
+    public void initialize(URL location, ResourceBundle resources) {
+        Thread hilo = new Thread(() -> {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        });
-    });
+    
+            Platform.runLater(() -> {
+                List<Boolean> subidoList = new ArrayList<>(Arrays.asList(
+                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 1),
+                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 2),
+                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 3),
+                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 4),
+                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 5),
+                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 6),
+                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 7),
+                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 8)
+                ));
+    
+                List<Boolean> aprovadoList = new ArrayList<>(Arrays.asList(
+                        ARDAO.getStatusAprovado(matriculaModel.getMatricula(), 1),
+                        ARDAO.getStatusAprovado(matriculaModel.getMatricula(), 2),
+                        ARDAO.getStatusAprovado(matriculaModel.getMatricula(), 3),
+                        ARDAO.getStatusAprovado(matriculaModel.getMatricula(), 4),
+                        ARDAO.getStatusAprovado(matriculaModel.getMatricula(), 5),
+                        ARDAO.getStatusAprovado(matriculaModel.getMatricula(), 6),
+                        ARDAO.getStatusAprovado(matriculaModel.getMatricula(), 7),
+                        ARDAO.getStatusAprovado(matriculaModel.getMatricula(), 8)
+                ));
+    
+                List<Label> labelList = new ArrayList<>(Arrays.asList(
+                        labelSubir1, labelSubir2, labelSubir3, labelSubir4,
+                        labelSubir5, labelSubir6, labelSubir7, labelSubir8
+                ));
+    
+                List<ImageView> imgTrashList = new ArrayList<>(Arrays.asList(
+                        imgtrash1, imgtrash2, imgtrash3, imgtrash4,
+                        imgtrash5, imgtrash6, imgtrash7, imgtrash8
+                ));
 
-    hilo.start();
-}
+                List<Button> buttonList = new ArrayList<>(Arrays.asList(
+                    btnSubirArchivo1, btnSubirArchivo2, btnSubirArchivo3, btnSubirArchivo4,
+                    btnSubirArchivo5, btnSubirArchivo6, btnSubirArchivo7, btnSubirArchivo8
+                ));
+    
+                for (int i = 0; i < subidoList.size(); i++) {
+                    boolean subido = subidoList.get(i);
+                    boolean aprovado = aprovadoList.get(i);
+                    Button boton = buttonList.get(i);
+                    Label label = labelList.get(i);
+                    ImageView imgTrash = imgTrashList.get(i);
+    
+                    if (subido) {
+                        boton.setDisable(true);
+                        label.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
+                        imgTrash.setVisible(true);
+                        imgTrash.setDisable(false);
+                    }
+    
+                    if (aprovado) {
+                        imgTrash.setVisible(false);
+                        imgTrash.setDisable(true);
+                    }
+                }
+            });
+        });
+    
+        hilo.start();
+    }
 
 }
 

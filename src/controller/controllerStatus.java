@@ -2,6 +2,9 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -16,6 +19,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import model.AlumnoDAO;
+import model.ArchivosDAO;
 
 
 public class controllerStatus implements Initializable{
@@ -64,6 +69,10 @@ public class controllerStatus implements Initializable{
 
     @FXML
     private ImageView logoHome;
+
+    private AlumnoDAO ADAO = new AlumnoDAO();
+
+    private ArchivosDAO ARDAO = new ArchivosDAO();
 
     private MatriculaModel matriculaModel;
 
@@ -125,22 +134,48 @@ public class controllerStatus implements Initializable{
 
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Thread hilo = new Thread(() -> {
             try {
-                Thread.sleep(100);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
     
             Platform.runLater(() -> {
+                int totalArchivos = 8; // Número total de archivos
+                List<Label> labelList = Arrays.asList(LabelStatus1, LabelStatus2, LabelStatus3, LabelStatus4, LabelStatus5, LabelStatus6, LabelStatus7, LabelStatus8);
+                List<Boolean> statusSubidoList = new ArrayList<>();
+                List<Boolean> statusAceptadoList = new ArrayList<>();
     
+                // Obtener los estados de subido y aceptado para cada archivo
+                for (int i = 1; i <= totalArchivos; i++) {
+                    statusSubidoList.add(ARDAO.getStatusSubido(matriculaModel.getMatricula(), i));
+                    statusAceptadoList.add(ARDAO.getStatusAprovado(matriculaModel.getMatricula(), i));
+                }
+    
+                // Actualizar los textos y estilos de los labels según los estados
+                for (int i = 0; i < totalArchivos; i++) {
+                    Label label = labelList.get(i);
+                    boolean statusSubido = statusSubidoList.get(i);
+                    boolean statusAceptado = statusAceptadoList.get(i);
+    
+                    if (statusSubido) {
+                        label.setText("EN PROCESO");
+                        label.setStyle("-fx-background-color: #F8EF27; -fx-text-fill: black");
+                    }
+    
+                    if (statusAceptado) {
+                        label.setText("ACEPTADO");
+                        label.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
+                    }
+                }
             });
         });
     
         hilo.start();
     }
+ 
 
 }

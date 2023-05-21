@@ -196,6 +196,55 @@ public class ArchivosDAO {
         return status;
     }
 
+    public boolean getStatusAprovado(int matricula, int tipo_archivo_id) {
+        Connection connection = null;
+        PreparedStatement pst;
+        ResultSet rs;
+        int id = getId(matricula);
+
+        boolean status = false;
+
+        try {
+
+            connection = PoolConnection.getInstance().getConnection();
+
+            if (connection != null) {
+
+                String sql = "SELECT aprovado FROM archivos WHERE alumno_id = ? and tipos_archivo_id = ? ";
+
+                pst = connection.prepareStatement(sql);
+                pst.setInt(1, id);
+                pst.setInt(2, tipo_archivo_id);
+
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    status = rs.getBoolean("aprovado");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Hubo un error al conectarse con la base de datos", "ERROR",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (HeadlessException | SQLException ex) {
+            JOptionPane.showMessageDialog(null,
+                    "Hubo un error de ejecución, posibles errores:\n" + ex.getMessage());
+        } finally {
+
+            try {
+                if (connection != null) {
+                    PoolConnection.getInstance().closeConnection(connection);
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+            }
+
+        }
+
+        return status;
+    }
+
 
     
 }
