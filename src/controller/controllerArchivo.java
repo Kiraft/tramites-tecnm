@@ -12,6 +12,8 @@ import controller.util.MatriculaModel;
 import controller.util.StageLoaderMatricula;
 
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileSystemView;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -186,32 +188,32 @@ public class controllerArchivo implements Initializable {
     @FXML
     void cargarArchivo(ActionEvent event) {
         if (event.getSource().equals(btnSubirArchivo1)) {
-            cargarArchivoEnHiloSecundario(imgtrash1, btnSubirArchivo1, labelSubir1, 1);
+            cargarArchivoEnHiloSecundario(imgtrash1, btnSubirArchivo1, labelSubir1, 1, "solicitud");
 
         } else if (event.getSource().equals(btnSubirArchivo2)) {
-            cargarArchivoEnHiloSecundario(imgtrash2, btnSubirArchivo2, labelSubir2, 2);
+            cargarArchivoEnHiloSecundario(imgtrash2, btnSubirArchivo2, labelSubir2, 2, "carta compromiso");
 
         } else if (event.getSource().equals(btnSubirArchivo3)) {
-            cargarArchivoEnHiloSecundario(imgtrash3, btnSubirArchivo3, labelSubir3, 3);
+            cargarArchivoEnHiloSecundario(imgtrash3, btnSubirArchivo3, labelSubir3, 3, "plan de trabajo");
 
         } else if (event.getSource().equals(btnSubirArchivo4)) {
-            cargarArchivoEnHiloSecundario(imgtrash4, btnSubirArchivo4, labelSubir4, 4);
+            cargarArchivoEnHiloSecundario(imgtrash4, btnSubirArchivo4, labelSubir4, 4, "carta de asignacion");
 
         } else if (event.getSource().equals(btnSubirArchivo5)) {
-            cargarArchivoEnHiloSecundario(imgtrash5, btnSubirArchivo5, labelSubir5, 5);
+            cargarArchivoEnHiloSecundario(imgtrash5, btnSubirArchivo5, labelSubir5, 5, "carta aceptacion");
 
         } else if (event.getSource().equals(btnSubirArchivo6)) {
-            cargarArchivoEnHiloSecundario(imgtrash6, btnSubirArchivo6, labelSubir6, 6);
+            cargarArchivoEnHiloSecundario(imgtrash6, btnSubirArchivo6, labelSubir6, 6, "formato de evaluacion");
 
         } else if (event.getSource().equals(btnSubirArchivo7)) {
-            cargarArchivoEnHiloSecundario(imgtrash7, btnSubirArchivo7, labelSubir7, 7);
+            cargarArchivoEnHiloSecundario(imgtrash7, btnSubirArchivo7, labelSubir7, 7, "carta de terminacion");
 
         } else if (event.getSource().equals(btnSubirArchivo8)) {
-            cargarArchivoEnHiloSecundario(imgtrash8, btnSubirArchivo8, labelSubir8, 8);
+            cargarArchivoEnHiloSecundario(imgtrash8, btnSubirArchivo8, labelSubir8, 8, "reporte final de actividad");
         }
     }
     
-    private void cargarArchivoEnHiloSecundario(ImageView imageView, Button botonSubirArchivo, Label labelSubir, int id_archivo) {
+    private void cargarArchivoEnHiloSecundario(ImageView imageView, Button botonSubirArchivo, Label labelSubir, int id_archivo, String NombreArchivo) {
 
         Thread hiloCargaArchivo = new Thread(() -> {
             FileChooser fileChooser = new FileChooser();
@@ -226,17 +228,19 @@ public class controllerArchivo implements Initializable {
     
                 if (file != null) {
                     
-                    String NombreArchivo = file.getName();
-
-                    String NombreAlumno = String.valueOf(ADAO.getNombre(matriculaModel.getMatricula()));
-            
-                    File CarpetaDestino = new File("C:/Users/Kiraft/Desktop/tramites-tecnm/docs/" + NombreAlumno + "/");
+                    String nombreArchivo = NombreArchivo + ".pdf";
+                    String nombreAlumno = String.valueOf(ADAO.getNombre(matriculaModel.getMatricula()));
                     
-                    if (!CarpetaDestino.exists()) {
-                        CarpetaDestino.mkdir();
+
+                    FileSystemView fileSystemView = FileSystemView.getFileSystemView();
+                    File carpetaDestino = new File(fileSystemView.getHomeDirectory().getPath() + File.separator + "tramites-tecnm" + File.separator + "docs" + File.separator + nombreAlumno);
+                    // File CarpetaDestino = new File("C:/Users/Kiraft/Desktop/tramites-tecnm/docs/" + nombreAlumno + "/");
+                    
+                    if (!carpetaDestino.exists()) {
+                        carpetaDestino.mkdir();
                     }
                     
-                    File Destino = new File(CarpetaDestino.getAbsolutePath() + File.separator + NombreArchivo);
+                    File Destino = new File(carpetaDestino.getAbsolutePath() + File.separator + nombreArchivo);
                     
                     if (file.renameTo(Destino)) {
                         labelSubir.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");

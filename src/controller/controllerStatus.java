@@ -19,7 +19,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import model.AlumnoDAO;
 import model.ArchivosDAO;
 
 
@@ -70,7 +69,6 @@ public class controllerStatus implements Initializable{
     @FXML
     private ImageView logoHome;
 
-    private AlumnoDAO ADAO = new AlumnoDAO();
 
     private ArchivosDAO ARDAO = new ArchivosDAO();
 
