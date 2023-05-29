@@ -69,7 +69,7 @@ public class ArchivosDAO {
     
             if (connection != null) {
     
-                String sql = "INSERT INTO archivos (alumno_id, tipos_archivo_id, ruta_archivo, subido, aprovado) " +
+                String sql = "INSERT INTO archivos (alumno_id, tipos_archivo_id, ruta_archivo, estado, aprovado) " +
                              "VALUES (?, ?, ?, ?, ?)";
     
                 pst = connection.prepareStatement(sql);
@@ -77,7 +77,7 @@ public class ArchivosDAO {
                 pst.setInt(1, id);
                 pst.setInt(2, tipo_archivo);
                 pst.setString(3, ruta_archivo);
-                pst.setBoolean(4, true);
+                pst.setString(4, "subido");
                 pst.setBoolean(5, false);
     
                 int rowsAffected = pst.executeUpdate();
@@ -147,13 +147,13 @@ public class ArchivosDAO {
     
     }
 
-    public boolean getStatusSubido(int matricula, int tipo_archivo_id) {
+    public String getEstado(int matricula, int tipo_archivo_id) {
         Connection connection = null;
         PreparedStatement pst;
         ResultSet rs;
         int id = getId(matricula);
 
-        boolean status = false;
+        String estado = "sin subir";
 
         try {
 
@@ -161,7 +161,7 @@ public class ArchivosDAO {
 
             if (connection != null) {
 
-                String sql = "SELECT subido FROM archivos WHERE alumno_id = ? and tipos_archivo_id = ? ";
+                String sql = "SELECT estado FROM archivos WHERE alumno_id = ? and tipos_archivo_id = ? ";
 
                 pst = connection.prepareStatement(sql);
                 pst.setInt(1, id);
@@ -170,7 +170,7 @@ public class ArchivosDAO {
                 rs = pst.executeQuery();
 
                 if (rs.next()) {
-                    status = rs.getBoolean("subido");
+                    estado = rs.getString("estado");
                 }
 
             } else {
@@ -193,7 +193,7 @@ public class ArchivosDAO {
 
         }
 
-        return status;
+        return estado;
     }
 
     public boolean getStatusAprovado(int matricula, int tipo_archivo_id) {

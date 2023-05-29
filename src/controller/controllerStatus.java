@@ -144,29 +144,32 @@ public class controllerStatus implements Initializable{
             Platform.runLater(() -> {
                 int totalArchivos = 8; // Número total de archivos
                 List<Label> labelList = Arrays.asList(LabelStatus1, LabelStatus2, LabelStatus3, LabelStatus4, LabelStatus5, LabelStatus6, LabelStatus7, LabelStatus8);
-                List<Boolean> statusSubidoList = new ArrayList<>();
+                List<String> estadoList = new ArrayList<>();
                 List<Boolean> statusAceptadoList = new ArrayList<>();
     
                 // Obtener los estados de subido y aceptado para cada archivo
                 for (int i = 1; i <= totalArchivos; i++) {
-                    statusSubidoList.add(ARDAO.getStatusSubido(matriculaModel.getMatricula(), i));
+                    estadoList.add(ARDAO.getEstado(matriculaModel.getMatricula(), i));
                     statusAceptadoList.add(ARDAO.getStatusAprovado(matriculaModel.getMatricula(), i));
                 }
     
                 // Actualizar los textos y estilos de los labels según los estados
                 for (int i = 0; i < totalArchivos; i++) {
                     Label label = labelList.get(i);
-                    boolean statusSubido = statusSubidoList.get(i);
+                    String estado = estadoList.get(i);
                     boolean statusAceptado = statusAceptadoList.get(i);
-    
-                    if (statusSubido) {
+                    if (estado.equals("sin subir")) {
+                        label.setText("SIN SUBIR");
+                        label.setStyle("-fx-background-color: #CCCCCC; -fx-text-fill: black; -fx-background-radius: 10");
+                    }
+                    if (estado.equals("subido")) {
                         label.setText("EN PROCESO");
-                        label.setStyle("-fx-background-color: #F8EF27; -fx-text-fill: black");
+                        label.setStyle("-fx-background-color: #F8EF27; -fx-text-fill: black; -fx-background-radius: 10");
                     }
     
                     if (statusAceptado) {
                         label.setText("ACEPTADO");
-                        label.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
+                        label.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white; -fx-background-radius: 10");
                     }
                 }
             });

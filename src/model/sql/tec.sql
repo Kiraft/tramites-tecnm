@@ -26,7 +26,7 @@ CREATE TABLE archivos (
     alumno_id INT UNSIGNED NOT NULL,
     tipos_archivo_id INT UNSIGNED NOT NULL,
     ruta_archivo VARCHAR(255) NOT NULL,
-    subido BOOLEAN NOT NULL DEFAULT false,
+    estado VARCHAR(255) NOT NULL,
     aprovado BOOLEAN NOT NULL DEFAULT false,
 
     FOREIGN KEY (alumno_id) REFERENCES alumnos(id),

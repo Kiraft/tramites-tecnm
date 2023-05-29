@@ -265,12 +265,7 @@ public class controllerArchivo implements Initializable {
         hiloCargaArchivo.start();
     }
 
-    // private void BorrarArchivo(ImageView imageView, Label labelSubir, Button botonSubirArchivo, int idRegistro) {
-    //     ARDAO.deleteArchivo(matriculaModel.getMatricula(), idRegistro);
-    //     labelSubir.setStyle("-fx-background-color: #EB4545; -fx-text-fill: white;");
-    //     botonSubirArchivo.setDisable(false);
-    //     imageView.setDisable(true);
-    // }
+
 
     private void BorrarArchivo(ImageView imageView, Label labelSubir, Button botonSubirArchivo, int idRegistro) {
         String rutaArchivo = ARDAO.getRutaArchivo(matriculaModel.getMatricula(), idRegistro);
@@ -326,15 +321,15 @@ public class controllerArchivo implements Initializable {
             }
     
             Platform.runLater(() -> {
-                List<Boolean> subidoList = new ArrayList<>(Arrays.asList(
-                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 1),
-                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 2),
-                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 3),
-                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 4),
-                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 5),
-                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 6),
-                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 7),
-                        ARDAO.getStatusSubido(matriculaModel.getMatricula(), 8)
+                List<String> estadoList = new ArrayList<>(Arrays.asList(
+                        ARDAO.getEstado(matriculaModel.getMatricula(), 1),
+                        ARDAO.getEstado(matriculaModel.getMatricula(), 2),
+                        ARDAO.getEstado(matriculaModel.getMatricula(), 3),
+                        ARDAO.getEstado(matriculaModel.getMatricula(), 4),
+                        ARDAO.getEstado(matriculaModel.getMatricula(), 5),
+                        ARDAO.getEstado(matriculaModel.getMatricula(), 6),
+                        ARDAO.getEstado(matriculaModel.getMatricula(), 7),
+                        ARDAO.getEstado(matriculaModel.getMatricula(), 8)
                 ));
     
                 List<Boolean> aprovadoList = new ArrayList<>(Arrays.asList(
@@ -363,14 +358,14 @@ public class controllerArchivo implements Initializable {
                     btnSubirArchivo5, btnSubirArchivo6, btnSubirArchivo7, btnSubirArchivo8
                 ));
     
-                for (int i = 0; i < subidoList.size(); i++) {
-                    boolean subido = subidoList.get(i);
+                for (int i = 0; i < estadoList.size(); i++) {
+                    String estado = estadoList.get(i);
                     boolean aprovado = aprovadoList.get(i);
                     Button boton = buttonList.get(i);
                     Label label = labelList.get(i);
                     ImageView imgTrash = imgTrashList.get(i);
     
-                    if (subido) {
+                    if (estado.equals("subido")) {
                         boton.setDisable(true);
                         label.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
                         imgTrash.setVisible(true);
