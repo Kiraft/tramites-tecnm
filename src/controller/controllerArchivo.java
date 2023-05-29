@@ -265,11 +265,27 @@ public class controllerArchivo implements Initializable {
         hiloCargaArchivo.start();
     }
 
+    // private void BorrarArchivo(ImageView imageView, Label labelSubir, Button botonSubirArchivo, int idRegistro) {
+    //     ARDAO.deleteArchivo(matriculaModel.getMatricula(), idRegistro);
+    //     labelSubir.setStyle("-fx-background-color: #EB4545; -fx-text-fill: white;");
+    //     botonSubirArchivo.setDisable(false);
+    //     imageView.setDisable(true);
+    // }
+
     private void BorrarArchivo(ImageView imageView, Label labelSubir, Button botonSubirArchivo, int idRegistro) {
-        ARDAO.deleteArchivo(matriculaModel.getMatricula(), idRegistro);
-        labelSubir.setStyle("-fx-background-color: #EB4545; -fx-text-fill: white;");
-        botonSubirArchivo.setDisable(false);
-        imageView.setDisable(true);
+        String rutaArchivo = ARDAO.getRutaArchivo(matriculaModel.getMatricula(), idRegistro);
+        File archivo = new File(rutaArchivo);
+        
+        if (archivo.delete()) {
+            // Eliminación exitosa del archivo
+            ARDAO.deleteArchivo(matriculaModel.getMatricula(), idRegistro);
+            labelSubir.setStyle("-fx-background-color: #EB4545; -fx-text-fill: white;");
+            botonSubirArchivo.setDisable(false);
+            imageView.setDisable(true);
+        } else {
+            // Error al eliminar el archivo
+            JOptionPane.showMessageDialog(null, "Error al eliminar el archivo", null, JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     @FXML

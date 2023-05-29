@@ -63,7 +63,12 @@ public class controllerLandingPage implements Initializable {
                 e.printStackTrace();
             }
         } else if (event.getSource().equals(btnCerrar)) {
-            LabelControl.setText(String.valueOf(matriculaModel.getMatricula()));
+                try {
+                    StageLoaderMatricula.load("/view/ViewLogin.fxml", event, null);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
         } else {
             JOptionPane.showMessageDialog(null, "EN DESARROLLO, VUELVA MAS TARDE", null, JOptionPane.WARNING_MESSAGE);
         }
